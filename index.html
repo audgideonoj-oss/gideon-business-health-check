@@ -373,7 +373,68 @@
       <p id="observation"></p>
 
     </div>
+<div class="analysis-box">
 
+  <h4>Score Breakdown</h4>
+
+  <div class="result-box">
+    <strong>Profitability:</strong>
+    <span id="profitabilityScore">0/35</span>
+  </div>
+
+  <div class="result-box">
+    <strong>Expense Control:</strong>
+    <span id="expenseScore">0/20</span>
+  </div>
+
+  <div class="result-box">
+    <strong>Liquidity:</strong>
+    <span id="liquidityScore">0/20</span>
+  </div>
+
+  <div class="result-box">
+    <strong>Working Capital:</strong>
+    <span id="workingCapitalScore">0/15</span>
+  </div>
+
+  <div class="result-box">
+    <strong>Receivables Management:</strong>
+    <span id="receivablesScore">0/10</span>
+  </div>
+
+</div>
+
+
+<div class="analysis-box">
+
+  <h4>Key Risk Indicators</h4>
+
+  <div class="result-box">
+    <strong>Profitability:</strong>
+    <span id="profitabilityRisk">-</span>
+  </div>
+
+  <div class="result-box">
+    <strong>Expense Control:</strong>
+    <span id="expenseRisk">-</span>
+  </div>
+
+  <div class="result-box">
+    <strong>Liquidity:</strong>
+    <span id="liquidityRisk">-</span>
+  </div>
+
+  <div class="result-box">
+    <strong>Working Capital:</strong>
+    <span id="workingCapitalRisk">-</span>
+  </div>
+
+  <div class="result-box">
+    <strong>Receivables:</strong>
+    <span id="receivablesRisk">-</span>
+  </div>
+
+</div>
 
     <div class="analysis-box">
 
@@ -620,7 +681,66 @@ function calculateHealth() {
     liquidityScore +
     workingCapitalScore +
     receivablesScore;
+// ==============================
+// SCORE BREAKDOWN DISPLAY
+// ==============================
 
+document.getElementById("profitabilityScore").textContent =
+  profitabilityScore + "/35";
+
+document.getElementById("expenseScore").textContent =
+  expenseScore + "/20";
+
+document.getElementById("liquidityScore").textContent =
+  liquidityScore + "/20";
+
+document.getElementById("workingCapitalScore").textContent =
+  workingCapitalScore + "/15";
+
+document.getElementById("receivablesScore").textContent =
+  receivablesScore + "/10";
+
+
+// ==============================
+// RISK INDICATORS
+// ==============================
+
+function riskLabel(score, maximum) {
+
+  const percentage =
+    (score / maximum) * 100;
+
+  if (percentage >= 80) {
+
+    return "🟢 Healthy";
+
+  } else if (percentage >= 60) {
+
+    return "🟡 Monitor";
+
+  } else {
+
+    return "🔴 Attention Required";
+
+  }
+
+}
+
+
+document.getElementById("profitabilityRisk").textContent =
+  riskLabel(profitabilityScore, 35);
+
+document.getElementById("expenseRisk").textContent =
+  riskLabel(expenseScore, 20);
+
+document.getElementById("liquidityRisk").textContent =
+  riskLabel(liquidityScore, 20);
+
+document.getElementById("workingCapitalRisk").textContent =
+  riskLabel(workingCapitalScore, 15);
+
+document.getElementById("receivablesRisk").textContent =
+  riskLabel(receivablesScore, 10);
 
   // ==============================
   // SCORE INTERPRETATION
