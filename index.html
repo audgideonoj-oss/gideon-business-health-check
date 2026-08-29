@@ -897,7 +897,44 @@
     <input type="number" id="creditors" placeholder="e.g. 70000">
 
     <br><br>
+<div class="client-details">
 
+  <h3>Before You Analyse Your Business</h3>
+
+  <p>
+    Enter your details so your professional report can be
+    prepared for you.
+  </p>
+
+  <label for="clientName">Your Name</label>
+
+  <input
+    type="text"
+    id="clientName"
+    placeholder="Enter your full name"
+    required
+  >
+
+  <label for="businessName">Business Name</label>
+
+  <input
+    type="text"
+    id="businessName"
+    placeholder="Enter your business name"
+    required
+  >
+
+  <label for="clientWhatsApp">
+    WhatsApp Number <span>(Optional)</span>
+  </label>
+
+  <input
+    type="tel"
+    id="clientWhatsApp"
+    placeholder="e.g. 08012345678"
+  >
+
+</div>
     <button class="btn" onclick="calculateHealth()">
       ANALYSE MY BUSINESS
     </button>
@@ -1276,6 +1313,34 @@ function startCheck() {
 
 
 function calculateHealth() {
+  const clientName =
+    const message =
+  `Hello Aud. Gideon OJ.
+
+My name is ${clientName}.
+
+I have completed the Gideon Business Health Check.
+
+Business: ${businessName}
+Health Score: ${score}
+Status: ${status}
+Priority Area: ${priority}
+
+I would like to request a professional review of my business financial records.`;
+  document.getElementById("clientName").value.trim();
+
+const businessName =
+  document.getElementById("businessName").value.trim();
+
+if (!clientName || !businessName) {
+
+  alert(
+    "Please enter your name and business name before analysing your business."
+  );
+
+  return;
+
+}
 
   const businessName =
     document.getElementById("businessName").value || "Your Business";
@@ -2135,7 +2200,11 @@ function downloadReport() {
     return;
   }
 
+const clientName =
+  document.getElementById("clientName").value;
 
+const businessName =
+  document.getElementById("businessName").value;
   const reportTitle =
     document.getElementById("resultTitle").textContent;
 
@@ -2471,6 +2540,73 @@ button {
   }
 
 }
+.client-details {
+
+  max-width: 700px;
+
+  margin: 25px auto;
+
+  padding: 25px;
+
+  border: 1px solid #e1e7ed;
+
+  border-radius: 12px;
+
+  background: #f7fafc;
+
+}
+
+.client-details h3 {
+
+  margin-top: 0;
+
+}
+
+.client-details p {
+
+  color: #68737d;
+
+  line-height: 1.6;
+
+}
+
+.client-details label {
+
+  display: block;
+
+  margin-top: 16px;
+
+  margin-bottom: 6px;
+
+  font-weight: 600;
+
+}
+
+.client-details input {
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 13px;
+
+  border: 1px solid #ccd5dc;
+
+  border-radius: 7px;
+
+  font-size: 15px;
+
+}
+
+.client-details span {
+
+  font-weight: normal;
+
+  color: #68737d;
+
+  font-size: 13px;
+
+}
 </style>
 
 </head>
@@ -2502,7 +2638,11 @@ button {
 
   <h1>BUSINESS HEALTH ASSESSMENT</h1>
 
-  <p>${reportTitle}</p>
+  <p><strong>Prepared for:</strong> ${clientName}</p>
+
+<p><strong>Business:</strong> ${businessName}</p>
+
+<p>${reportTitle}</p>
 
   <p>${assessmentDate}</p>
 
