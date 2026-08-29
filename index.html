@@ -133,7 +133,37 @@
 .priority-box {
   border-left: 5px solid #1687a7;
 }
+.service-card {
 
+  border: 1px solid #e1e7ed;
+
+  border-radius: 10px;
+
+  padding: 20px;
+
+  margin-top: 18px;
+
+  background: #ffffff;
+
+}
+
+.service-card h3 {
+
+  margin-top: 0;
+
+  margin-bottom: 8px;
+
+}
+
+.service-price {
+
+  font-size: 26px;
+
+  font-weight: bold;
+
+  margin: 10px 0;
+
+}
 .disclaimer {
   margin-top: 22px;
   padding: 15px;
@@ -561,7 +591,79 @@
   </button>
 
 </div>
+<div class="analysis-box">
 
+  <h4>Professional Services</h4>
+
+  <p>
+    Would you like a deeper review of your business financial position?
+    Choose the level of professional support that best suits your needs.
+  </p>
+
+
+  <div class="service-card">
+
+    <h3>Quick Financial Review</h3>
+
+    <div class="service-price">
+      ₦5,000
+    </div>
+
+    <p>
+      Focused review of the financial information submitted
+      through the Business Health Check.
+    </p>
+
+    <button class="btn"
+      onclick="requestService('Quick Financial Review', '₦5,000')">
+      REQUEST REVIEW
+    </button>
+
+  </div>
+
+
+  <div class="service-card">
+
+    <h3>Detailed Business Review</h3>
+
+    <div class="service-price">
+      ₦15,000
+    </div>
+
+    <p>
+      Deeper analysis of profitability, expenses, liquidity,
+      working capital and receivables.
+    </p>
+
+    <button class="btn"
+      onclick="requestService('Detailed Business Review', '₦15,000')">
+      REQUEST REVIEW
+    </button>
+
+  </div>
+
+
+  <div class="service-card">
+
+    <h3>Comprehensive Financial Review</h3>
+
+    <div class="service-price">
+      ₦25,000
+    </div>
+
+    <p>
+      Comprehensive professional review of business records,
+      financial position and management recommendations.
+    </p>
+
+    <button class="btn"
+      onclick="requestService('Comprehensive Financial Review', '₦25,000')">
+      REQUEST REVIEW
+    </button>
+
+  </div>
+
+</div>
   <div class="disclaimer">
 
     <strong>Important:</strong>
@@ -1360,6 +1462,80 @@ function contactProfessional() {
   } else if (priorityText.toLowerCase().includes("receivable")) {
     priority = "Receivables Management";
   }
+  function requestService(serviceName, servicePrice) {
+
+  const businessName =
+    document.getElementById("businessName").value ||
+    "My Business";
+
+  const score =
+    document.getElementById("score").textContent;
+
+  const status =
+    document.getElementById("status").textContent;
+
+  const priorityText =
+    document.getElementById("priorityArea").textContent;
+
+
+  let priority = "See assessment report";
+
+
+  if (priorityText.toLowerCase().includes("liquidity")) {
+
+    priority = "Liquidity";
+
+  } else if (priorityText.toLowerCase().includes("profitability")) {
+
+    priority = "Profitability";
+
+  } else if (priorityText.toLowerCase().includes("expense")) {
+
+    priority = "Expense Control";
+
+  } else if (priorityText.toLowerCase().includes("working capital")) {
+
+    priority = "Working Capital";
+
+  } else if (priorityText.toLowerCase().includes("receivable")) {
+
+    priority = "Receivables Management";
+
+  }
+
+
+  const message =
+    `Hello Aud. Gideon OJ.
+
+I have completed the Gideon Business Health Check.
+
+Business: ${businessName}
+Health Score: ${score}
+Status: ${status}
+Priority Area: ${priority}
+
+I am interested in the ${serviceName} (${servicePrice}).
+
+Please provide the next steps for engaging your professional service.`;
+
+
+  const phoneNumber =
+    "2347065905343";
+
+
+  const whatsappURL =
+    "https://wa.me/" +
+    phoneNumber +
+    "?text=" +
+    encodeURIComponent(message);
+
+
+  window.open(
+    whatsappURL,
+    "_blank"
+  );
+
+}
 
   const message =
     `Hello Aud. Gideon OJ.
