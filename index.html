@@ -1332,19 +1332,61 @@ document.getElementById("priorityArea").textContent =
   });
 
 }
-
 function contactProfessional() {
 
-  const phone = "2347065905343";
+  const businessName =
+    document.getElementById("businessName").value ||
+    "My Business";
+
+  const score =
+    document.getElementById("score").textContent;
+
+  const status =
+    document.getElementById("status").textContent;
+
+  const priority =
+    document.getElementById("priorityArea").textContent;
+
 
   const message =
-    "Hello Aud. Gideon OJ. I would like to request a professional review of my business financial records.";
+    "Hello Aud. Gideon OJ.%0A%0A" +
 
-  const url =
-    "https://wa.me/" + phone +
-    "?text=" + encodeURIComponent(message);
+    "I have completed the Gideon Business Health Check.%0A%0A" +
 
-  window.open(url, "_blank");
+    "Business Name: " +
+    encodeURIComponent(businessName) +
+    "%0A" +
+
+    "Health Score: " +
+    encodeURIComponent(score) +
+    "%0A" +
+
+    "Status: " +
+    encodeURIComponent(status) +
+    "%0A%0A" +
+
+    "Priority Area:%0A" +
+    encodeURIComponent(priority) +
+    "%0A%0A" +
+
+    "I would like to request a professional review of my business.";
+
+
+  const phoneNumber =
+    "2347065905343";
+
+
+  const whatsappURL =
+    "https://wa.me/" +
+    phoneNumber +
+    "?text=" +
+    message;
+
+
+  window.open(
+    whatsappURL,
+    "_blank"
+  );
 
 }
 function downloadReport() {
