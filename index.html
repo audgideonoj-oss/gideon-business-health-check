@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Gideon Business Health Check | Aud. Gideon OJ</title>
 
   <style>
@@ -22,12 +23,12 @@
     header {
       background: #102a43;
       color: white;
-      padding: 22px 20px;
+      padding: 24px 20px;
       text-align: center;
     }
 
     header h1 {
-      font-size: 26px;
+      font-size: 27px;
       margin-bottom: 5px;
     }
 
@@ -37,21 +38,26 @@
     }
 
     .container {
-      max-width: 700px;
-      margin: 35px auto;
+      max-width: 760px;
+      margin: 30px auto;
       padding: 0 20px;
     }
 
-    .hero {
+    .hero,
+    .section {
       background: white;
-      padding: 35px 25px;
       border-radius: 16px;
       box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+    }
+
+    .hero {
+      padding: 40px 25px;
       text-align: center;
     }
 
     .hero h2 {
-      font-size: 28px;
+      font-size: 30px;
+      color: #102a43;
       margin-bottom: 15px;
     }
 
@@ -78,54 +84,115 @@
 
     .section {
       display: none;
-      background: white;
-      margin-top: 20px;
-      padding: 25px;
-      border-radius: 16px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+      margin-top: 22px;
+      padding: 28px;
     }
 
     .section h3 {
-      margin-bottom: 20px;
       color: #102a43;
+      margin-bottom: 20px;
+      font-size: 22px;
     }
 
     label {
       display: block;
       margin-top: 15px;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
       font-weight: bold;
     }
 
     input {
       width: 100%;
-      padding: 12px;
+      padding: 13px;
       border: 1px solid #ccd6e0;
       border-radius: 7px;
       font-size: 16px;
     }
 
-    .result {
+    .report-title {
       text-align: center;
+      margin-bottom: 25px;
     }
 
     .score {
-      font-size: 48px;
+      text-align: center;
+      font-size: 52px;
       font-weight: bold;
       color: #1687a7;
-      margin: 15px 0;
-    }
-
-    .result-box {
-      background: #f4f7fb;
-      padding: 15px;
-      border-radius: 10px;
       margin: 10px 0;
-      text-align: left;
     }
 
-    .result-box strong {
+    .status {
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    .metric {
+      background: #f4f7fb;
+      padding: 16px;
+      border-radius: 10px;
+    }
+
+    .metric span {
+      display: block;
+      color: #68737d;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .metric strong {
+      font-size: 18px;
       color: #102a43;
+    }
+
+    .analysis-box {
+      background: #f4f7fb;
+      padding: 18px;
+      border-radius: 10px;
+      margin-top: 15px;
+    }
+
+    .analysis-box h4 {
+      color: #102a43;
+      margin-bottom: 8px;
+    }
+
+    .analysis-box p {
+      color: #52606d;
+    }
+
+    .recommendations {
+      margin-top: 15px;
+      padding-left: 20px;
+      color: #52606d;
+    }
+
+    .cta {
+      margin-top: 25px;
+      padding: 22px;
+      background: #102a43;
+      color: white;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .cta h4 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .cta p {
+      margin-bottom: 15px;
+      font-size: 14px;
     }
 
     footer {
@@ -136,12 +203,21 @@
     }
 
     @media (max-width: 600px) {
+
       .hero h2 {
-        font-size: 23px;
+        font-size: 24px;
       }
 
       .container {
         margin: 20px auto;
+      }
+
+      .metric-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 22px;
       }
     }
   </style>
@@ -149,196 +225,533 @@
 
 <body>
 
-  <header>
-    <h1>Aud. Gideon OJ</h1>
-    <p>Accountant • Auditor • Analyst</p>
-  </header>
+<header>
+  <h1>Aud. Gideon OJ</h1>
+  <p>Accountant • Auditor • Analyst</p>
+</header>
 
-  <main class="container">
+<main class="container">
 
-    <section class="hero">
-      <h2>Gideon Business Health Check</h2>
+  <section class="hero">
+
+    <h2>Gideon Business Health Check</h2>
+
+    <p>
+      Know your numbers. Understand your business.
+      Make better financial decisions.
+    </p>
+
+    <button class="btn" onclick="startCheck()">
+      START FREE CHECK
+    </button>
+
+  </section>
+
+
+  <section id="formSection" class="section">
+
+    <h3>Enter Your Business Figures</h3>
+
+    <label>Business Name</label>
+    <input type="text" id="businessName" placeholder="Enter business name">
+
+    <label>Monthly Revenue (₦)</label>
+    <input type="number" id="revenue" placeholder="e.g. 800000">
+
+    <label>Cost of Goods / Services (₦)</label>
+    <input type="number" id="cost" placeholder="e.g. 420000">
+
+    <label>Monthly Operating Expenses (₦)</label>
+    <input type="number" id="expenses" placeholder="e.g. 150000">
+
+    <label>Cash Available (₦)</label>
+    <input type="number" id="cash" placeholder="e.g. 90000">
+
+    <label>Money Customers Owe You (₦)</label>
+    <input type="number" id="debtors" placeholder="e.g. 180000">
+
+    <label>Money You Owe Suppliers (₦)</label>
+    <input type="number" id="creditors" placeholder="e.g. 70000">
+
+    <br><br>
+
+    <button class="btn" onclick="calculateHealth()">
+      ANALYSE MY BUSINESS
+    </button>
+
+  </section>
+
+
+  <section id="resultSection" class="section">
+
+    <div class="report-title">
+
+      <h3 id="resultTitle">
+        Business Health Report
+      </h3>
+
+      <div class="score" id="score">
+        0/100
+      </div>
+
+      <div class="status" id="status">
+        -
+      </div>
+
+    </div>
+
+
+    <div class="metric-grid">
+
+      <div class="metric">
+        <span>Revenue</span>
+        <strong>₦<span id="resultRevenue">0</span></strong>
+      </div>
+
+      <div class="metric">
+        <span>Cost of Goods / Services</span>
+        <strong>₦<span id="resultCost">0</span></strong>
+      </div>
+
+      <div class="metric">
+        <span>Gross Profit</span>
+        <strong>₦<span id="grossProfit">0</span></strong>
+      </div>
+
+      <div class="metric">
+        <span>Gross Margin</span>
+        <strong><span id="grossMargin">0</span>%</strong>
+      </div>
+
+      <div class="metric">
+        <span>Operating Expenses</span>
+        <strong>₦<span id="resultExpenses">0</span></strong>
+      </div>
+
+      <div class="metric">
+        <span>Net Profit</span>
+        <strong>₦<span id="netProfit">0</span></strong>
+      </div>
+
+      <div class="metric">
+        <span>Net Profit Margin</span>
+        <strong><span id="profitMargin">0</span>%</strong>
+      </div>
+
+      <div class="metric">
+        <span>Expense Ratio</span>
+        <strong><span id="expenseRatio">0</span>%</strong>
+      </div>
+
+      <div class="metric">
+        <span>Cash Available</span>
+        <strong>₦<span id="resultCash">0</span></strong>
+      </div>
+
+      <div class="metric">
+        <span>Customers Owe You</span>
+        <strong>₦<span id="resultDebtors">0</span></strong>
+      </div>
+
+      <div class="metric">
+        <span>You Owe Suppliers</span>
+        <strong>₦<span id="resultCreditors">0</span></strong>
+      </div>
+
+      <div class="metric">
+        <span>Working Capital Position</span>
+        <strong>₦<span id="workingCapital">0</span></strong>
+      </div>
+
+    </div>
+
+
+    <div class="analysis-box">
+
+      <h4>Professional Observation</h4>
+
+      <p id="observation"></p>
+
+    </div>
+
+
+    <div class="analysis-box">
+
+      <h4>Recommended Actions</h4>
+
+      <ul class="recommendations" id="recommendations"></ul>
+
+    </div>
+
+
+    <div class="cta">
+
+      <h4>Need a Deeper Business Review?</h4>
 
       <p>
-        Know your numbers. Understand your business.
-        Make better financial decisions.
+        Have your actual business records professionally reviewed
+        by Aud. Gideon OJ.
       </p>
 
-      <button class="btn" onclick="startCheck()">
-        START FREE CHECK
-      </button>
-    </section>
-
-    <section id="formSection" class="section">
-
-      <h3>Enter Your Business Figures</h3>
-
-      <label>Business Name</label>
-      <input type="text" id="businessName" placeholder="Enter business name">
-
-      <label>Monthly Revenue (₦)</label>
-      <input type="number" id="revenue" placeholder="e.g. 800000">
-
-      <label>Cost of Goods / Services (₦)</label>
-      <input type="number" id="cost" placeholder="e.g. 420000">
-
-      <label>Monthly Operating Expenses (₦)</label>
-      <input type="number" id="expenses" placeholder="e.g. 150000">
-
-      <label>Cash Available (₦)</label>
-      <input type="number" id="cash" placeholder="e.g. 90000">
-
-      <label>Money Customers Owe You (₦)</label>
-      <input type="number" id="debtors" placeholder="e.g. 180000">
-
-      <label>Money You Owe Suppliers (₦)</label>
-      <input type="number" id="creditors" placeholder="e.g. 70000">
-
-      <br><br>
-
-      <button class="btn" onclick="calculateHealth()">
-        ANALYSE MY BUSINESS
+      <button class="btn" onclick="contactProfessional()">
+        REQUEST PROFESSIONAL REVIEW
       </button>
 
-    </section>
+    </div>
 
-    <section id="resultSection" class="section result">
+    <br>
 
-      <h3 id="resultTitle">Your Business Health Report</h3>
+    <button class="btn" onclick="startCheck()">
+      CHECK AGAIN
+    </button>
 
-      <div class="score" id="score">0/100</div>
+  </section>
 
-      <div class="result-box">
-        <strong>Revenue:</strong>
-        ₦<span id="resultRevenue">0</span>
-      </div>
+</main>
 
-      <div class="result-box">
-        <strong>Gross Profit:</strong>
-        ₦<span id="grossProfit">0</span>
-      </div>
 
-      <div class="result-box">
-        <strong>Net Profit:</strong>
-        ₦<span id="netProfit">0</span>
-      </div>
+<footer>
 
-      <div class="result-box">
-        <strong>Profit Margin:</strong>
-        <span id="profitMargin">0</span>%
-      </div>
+  © 2026 Aud. Gideon OJ  
+  <br>
+  Accountant • Auditor • Analyst
 
-      <div class="result-box">
-        <strong>Expense Ratio:</strong>
-        <span id="expenseRatio">0</span>%
-      </div>
+</footer>
 
-      <div class="result-box">
-        <strong>Professional Observation:</strong>
-        <p id="observation"></p>
-      </div>
 
-      <br>
+<script>
 
-      <button class="btn" onclick="startCheck()">
-        CHECK AGAIN
-      </button>
+function startCheck() {
 
-    </section>
+  document.getElementById("formSection").style.display = "block";
 
-  </main>
+  document.getElementById("resultSection").style.display = "none";
 
-  <footer>
-    © 2026 Aud. Gideon OJ — Accountant • Auditor • Analyst
-  </footer>
+  document.getElementById("formSection").scrollIntoView({
+    behavior: "smooth"
+  });
 
-  <script>
+}
 
-    function startCheck() {
-      document.getElementById("formSection").style.display = "block";
-      document.getElementById("resultSection").style.display = "none";
 
-      document.getElementById("formSection").scrollIntoView({
-        behavior: "smooth"
-      });
-    }
+function calculateHealth() {
 
-    function calculateHealth() {
+  const businessName =
+    document.getElementById("businessName").value || "Your Business";
 
-      const revenue = Number(document.getElementById("revenue").value);
-      const cost = Number(document.getElementById("cost").value);
-      const expenses = Number(document.getElementById("expenses").value);
+  const revenue =
+    Number(document.getElementById("revenue").value);
 
-      if (!revenue || revenue <= 0) {
-        alert("Please enter your monthly revenue.");
-        return;
-      }
+  const cost =
+    Number(document.getElementById("cost").value);
 
-      const grossProfit = revenue - cost;
-      const netProfit = grossProfit - expenses;
+  const expenses =
+    Number(document.getElementById("expenses").value);
 
-      const profitMargin = (netProfit / revenue) * 100;
-      const expenseRatio = (expenses / revenue) * 100;
+  const cash =
+    Number(document.getElementById("cash").value);
 
-      let score = 50;
+  const debtors =
+    Number(document.getElementById("debtors").value);
 
-      if (profitMargin > 30) score += 25;
-      else if (profitMargin > 20) score += 20;
-      else if (profitMargin > 10) score += 10;
+  const creditors =
+    Number(document.getElementById("creditors").value);
 
-      if (expenseRatio < 20) score += 20;
-      else if (expenseRatio < 35) score += 15;
-      else if (expenseRatio < 50) score += 5;
 
-      if (netProfit < 0) score -= 30;
+  if (!revenue || revenue <= 0) {
 
-      if (score > 100) score = 100;
-      if (score < 0) score = 0;
+    alert("Please enter your monthly revenue.");
 
-      document.getElementById("resultRevenue").textContent =
-        revenue.toLocaleString();
+    return;
 
-      document.getElementById("grossProfit").textContent =
-        grossProfit.toLocaleString();
+  }
 
-      document.getElementById("netProfit").textContent =
-        netProfit.toLocaleString();
 
-      document.getElementById("profitMargin").textContent =
-        profitMargin.toFixed(1);
+  const grossProfit = revenue - cost;
 
-      document.getElementById("expenseRatio").textContent =
-        expenseRatio.toFixed(1);
+  const netProfit = grossProfit - expenses;
 
-      document.getElementById("score").textContent =
-        score + "/100";
+  const grossMargin =
+    (grossProfit / revenue) * 100;
 
-      let observation = "";
+  const profitMargin =
+    (netProfit / revenue) * 100;
 
-      if (netProfit < 0) {
-        observation =
-          "Your business is currently operating at a loss. Review pricing, cost of goods and operating expenses.";
-      } else if (profitMargin < 10) {
-        observation =
-          "Your business is profitable, but the profit margin is relatively low. Review your costs and pricing.";
-      } else if (expenseRatio > 40) {
-        observation =
-          "Your expenses are taking a significant portion of your revenue. Consider reviewing unnecessary or controllable costs.";
-      } else {
-        observation =
-          "Your business shows a healthy level of profitability. Continue monitoring revenue, expenses and cash flow.";
-      }
+  const expenseRatio =
+    (expenses / revenue) * 100;
 
-      document.getElementById("observation").textContent = observation;
+  const workingCapital =
+    cash + debtors - creditors;
 
-      document.getElementById("resultSection").style.display = "block";
 
-      document.getElementById("resultSection").scrollIntoView({
-        behavior: "smooth"
-      });
-    }
+  let score = 50;
 
-  </script>
+
+  if (profitMargin >= 30) {
+
+    score += 25;
+
+  } else if (profitMargin >= 20) {
+
+    score += 20;
+
+  } else if (profitMargin >= 10) {
+
+    score += 10;
+
+  } else if (profitMargin < 0) {
+
+    score -= 30;
+
+  }
+
+
+  if (expenseRatio < 20) {
+
+    score += 20;
+
+  } else if (expenseRatio < 35) {
+
+    score += 15;
+
+  } else if (expenseRatio < 50) {
+
+    score += 5;
+
+  } else {
+
+    score -= 10;
+
+  }
+
+
+  if (cash > 0) {
+
+    score += 5;
+
+  }
+
+
+  if (score > 100) score = 100;
+
+  if (score < 0) score = 0;
+
+
+  let status = "";
+
+  if (score >= 80) {
+
+    status = "HEALTHY BUSINESS POSITION";
+
+  } else if (score >= 60) {
+
+    status = "MODERATELY HEALTHY";
+
+  } else if (score >= 40) {
+
+    status = "NEEDS ATTENTION";
+
+  } else {
+
+    status = "HIGH RISK";
+
+  }
+
+
+  document.getElementById("resultTitle").textContent =
+    businessName + " — Business Health Report";
+
+
+  document.getElementById("score").textContent =
+    score + "/100";
+
+
+  document.getElementById("status").textContent =
+    status;
+
+
+  document.getElementById("resultRevenue").textContent =
+    revenue.toLocaleString();
+
+
+  document.getElementById("resultCost").textContent =
+    cost.toLocaleString();
+
+
+  document.getElementById("grossProfit").textContent =
+    grossProfit.toLocaleString();
+
+
+  document.getElementById("grossMargin").textContent =
+    grossMargin.toFixed(1);
+
+
+  document.getElementById("resultExpenses").textContent =
+    expenses.toLocaleString();
+
+
+  document.getElementById("netProfit").textContent =
+    netProfit.toLocaleString();
+
+
+  document.getElementById("profitMargin").textContent =
+    profitMargin.toFixed(1);
+
+
+  document.getElementById("expenseRatio").textContent =
+    expenseRatio.toFixed(1);
+
+
+  document.getElementById("resultCash").textContent =
+    cash.toLocaleString();
+
+
+  document.getElementById("resultDebtors").textContent =
+    debtors.toLocaleString();
+
+
+  document.getElementById("resultCreditors").textContent =
+    creditors.toLocaleString();
+
+
+  document.getElementById("workingCapital").textContent =
+    workingCapital.toLocaleString();
+
+
+  let observation = "";
+
+  if (netProfit < 0) {
+
+    observation =
+      "Your business is currently operating at a loss. Management should urgently review pricing, direct costs and operating expenses.";
+
+  } else if (profitMargin < 10) {
+
+    observation =
+      "The business is profitable, but the net profit margin is relatively low. Management should review pricing, cost structure and operating expenses.";
+
+  } else if (expenseRatio > 40) {
+
+    observation =
+      "Operating expenses are consuming a significant portion of revenue. Greater expense control may improve profitability.";
+
+  } else if (workingCapital < 0) {
+
+    observation =
+      "Your reported cash, receivables and payables indicate a negative working-capital position. Cash-flow management requires attention.";
+
+  } else {
+
+    observation =
+      "The business demonstrates a healthy level of profitability. Management should continue monitoring revenue, expenses, working capital and cash flow.";
+
+  }
+
+
+  document.getElementById("observation").textContent =
+    observation;
+
+
+  const recommendations =
+    document.getElementById("recommendations");
+
+  recommendations.innerHTML = "";
+
+
+  let actions = [];
+
+
+  if (profitMargin < 10) {
+
+    actions.push(
+      "Review your pricing and major cost categories to improve profit margin."
+    );
+
+  }
+
+
+  if (expenseRatio > 35) {
+
+    actions.push(
+      "Review operating expenses and identify costs that can be reduced or better controlled."
+    );
+
+  }
+
+
+  if (debtors > cash) {
+
+    actions.push(
+      "Strengthen receivables collection so that more reported profit is converted into cash."
+    );
+
+  }
+
+
+  if (workingCapital < 0) {
+
+    actions.push(
+      "Develop a short-term cash-flow plan and carefully manage supplier obligations."
+    );
+
+  }
+
+
+  if (actions.length === 0) {
+
+    actions.push(
+      "Continue monitoring revenue, expenses and cash flow on a monthly basis."
+    );
+
+    actions.push(
+      "Maintain proper financial records to support informed management decisions."
+    );
+
+    actions.push(
+      "Review your financial performance periodically against your business goals."
+    );
+
+  }
+
+
+  actions.forEach(function(action) {
+
+    const li = document.createElement("li");
+
+    li.textContent = action;
+
+    recommendations.appendChild(li);
+
+  });
+
+
+  document.getElementById("resultSection").style.display =
+    "block";
+
+
+  document.getElementById("resultSection").scrollIntoView({
+    behavior: "smooth"
+  });
+
+}
+
+
+function contactProfessional() {
+
+  const phone = "2347065905343";
+
+  const message =
+    "Hello Aud. Gideon OJ. I would like to request a professional review of my business financial records.";
+
+  const url =
+    "https://wa.me/" + phone +
+    "?text=" + encodeURIComponent(message);
+
+  window.open(url, "_blank");
+
+}
+
+</script>
 
 </body>
 </html>
