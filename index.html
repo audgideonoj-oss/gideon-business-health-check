@@ -1344,50 +1344,45 @@ function contactProfessional() {
   const status =
     document.getElementById("status").textContent;
 
-  const priority =
+  const priorityText =
     document.getElementById("priorityArea").textContent;
 
+  let priority = "See assessment report";
+
+  if (priorityText.toLowerCase().includes("liquidity")) {
+    priority = "Liquidity";
+  } else if (priorityText.toLowerCase().includes("profitability")) {
+    priority = "Profitability";
+  } else if (priorityText.toLowerCase().includes("expense")) {
+    priority = "Expense Control";
+  } else if (priorityText.toLowerCase().includes("working capital")) {
+    priority = "Working Capital";
+  } else if (priorityText.toLowerCase().includes("receivable")) {
+    priority = "Receivables Management";
+  }
 
   const message =
-    "Hello Aud. Gideon OJ.%0A%0A" +
+    `Hello Aud. Gideon OJ.
 
-    "I have completed the Gideon Business Health Check.%0A%0A" +
+I have completed the Gideon Business Health Check.
 
-    "Business Name: " +
-    encodeURIComponent(businessName) +
-    "%0A" +
+Business: ${businessName}
+Health Score: ${score}
+Status: ${status}
+Priority Area: ${priority}
 
-    "Health Score: " +
-    encodeURIComponent(score) +
-    "%0A" +
+I would like to request a professional review of my business financial records.`;
 
-    "Status: " +
-    encodeURIComponent(status) +
-    "%0A%0A" +
-
-    "Priority Area:%0A" +
-    encodeURIComponent(priority) +
-    "%0A%0A" +
-
-    "I would like to request a professional review of my business.";
-
-
-  const phoneNumber =
-    "2347065905343";
-
+  const phoneNumber = "2347065905343";
 
   const whatsappURL =
     "https://wa.me/" +
     phoneNumber +
     "?text=" +
-    message;
+    encodeURIComponent(message);
 
-
-  window.open(
-    whatsappURL,
-    "_blank"
-  );
-
+  window.open(whatsappURL, "_blank");
+}
 }
 function downloadReport() {
 
