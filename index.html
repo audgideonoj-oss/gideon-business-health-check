@@ -463,9 +463,21 @@ function calculateHealth() {
     alert("Please enter your monthly revenue.");
 
     return;
-
   }
 
+
+  if (cost < 0 || expenses < 0 || cash < 0 ||
+      debtors < 0 || creditors < 0) {
+
+    alert("Please enter valid positive figures.");
+
+    return;
+  }
+
+
+  // ==============================
+  // BASIC FINANCIAL CALCULATIONS
+  // ==============================
 
   const grossProfit = revenue - cost;
 
@@ -484,68 +496,149 @@ function calculateHealth() {
     cash + debtors - creditors;
 
 
-  let score = 50;
+  // ==============================
+  // 1. PROFITABILITY SCORE — 35
+  // ==============================
 
+  let profitabilityScore = 0;
 
   if (profitMargin >= 30) {
-
-    score += 25;
-
+    profitabilityScore = 35;
   } else if (profitMargin >= 20) {
-
-    score += 20;
-
+    profitabilityScore = 30;
+  } else if (profitMargin >= 15) {
+    profitabilityScore = 25;
   } else if (profitMargin >= 10) {
-
-    score += 10;
-
-  } else if (profitMargin < 0) {
-
-    score -= 30;
-
+    profitabilityScore = 20;
+  } else if (profitMargin >= 5) {
+    profitabilityScore = 10;
+  } else if (profitMargin >= 0) {
+    profitabilityScore = 5;
+  } else {
+    profitabilityScore = 0;
   }
 
 
-  if (expenseRatio < 20) {
+  // ==============================
+  // 2. EXPENSE CONTROL SCORE — 20
+  // ==============================
 
-    score += 20;
+  let expenseScore = 0;
 
-  } else if (expenseRatio < 35) {
+  if (expenseRatio <= 20) {
+    expenseScore = 20;
+  } else if (expenseRatio <= 30) {
+    expenseScore = 17;
+  } else if (expenseRatio <= 40) {
+    expenseScore = 13;
+  } else if (expenseRatio <= 50) {
+    expenseScore = 8;
+  } else {
+    expenseScore = 3;
+  }
 
-    score += 15;
 
-  } else if (expenseRatio < 50) {
+  // ==============================
+  // 3. LIQUIDITY SCORE — 20
+  // ==============================
 
-    score += 5;
+  let liquidityScore = 0;
+
+  if (expenses === 0) {
+
+    liquidityScore = cash > 0 ? 20 : 10;
 
   } else {
 
-    score -= 10;
+    const cashCoverage =
+      cash / expenses;
 
+    if (cashCoverage >= 3) {
+      liquidityScore = 20;
+    } else if (cashCoverage >= 2) {
+      liquidityScore = 17;
+    } else if (cashCoverage >= 1) {
+      liquidityScore = 14;
+    } else if (cashCoverage >= 0.5) {
+      liquidityScore = 9;
+    } else if (cashCoverage > 0) {
+      liquidityScore = 5;
+    } else {
+      liquidityScore = 0;
+    }
   }
 
 
-  if (cash > 0) {
+  // ==============================
+  // 4. WORKING CAPITAL SCORE — 15
+  // ==============================
 
-    score += 5;
+  let workingCapitalScore = 0;
 
+  if (workingCapital >= revenue * 0.25) {
+    workingCapitalScore = 15;
+  } else if (workingCapital >= revenue * 0.10) {
+    workingCapitalScore = 13;
+  } else if (workingCapital >= 0) {
+    workingCapitalScore = 9;
+  } else if (workingCapital >= -revenue * 0.10) {
+    workingCapitalScore = 5;
+  } else {
+    workingCapitalScore = 0;
   }
 
 
-  if (score > 100) score = 100;
+  // ==============================
+  // 5. RECEIVABLES MANAGEMENT — 10
+  // ==============================
 
-  if (score < 0) score = 0;
+  let receivablesScore = 0;
 
+  const receivablesRatio =
+    (debtors / revenue) * 100;
+
+  if (receivablesRatio <= 10) {
+    receivablesScore = 10;
+  } else if (receivablesRatio <= 20) {
+    receivablesScore = 8;
+  } else if (receivablesRatio <= 30) {
+    receivablesScore = 6;
+  } else if (receivablesRatio <= 50) {
+    receivablesScore = 4;
+  } else {
+    receivablesScore = 2;
+  }
+
+
+  // ==============================
+  // TOTAL SCORE
+  // ==============================
+
+  const score =
+    profitabilityScore +
+    expenseScore +
+    liquidityScore +
+    workingCapitalScore +
+    receivablesScore;
+
+
+  // ==============================
+  // SCORE INTERPRETATION
+  // ==============================
 
   let status = "";
 
   if (score >= 80) {
 
-    status = "HEALTHY BUSINESS POSITION";
+    status = "EXCELLENT BUSINESS POSITION";
+
+  } else if (score >= 70) {
+
+    status = "GOOD BUSINESS POSITION";
 
   } else if (score >= 60) {
 
-    status = "MODERATELY HEALTHY";
+    status = "FAIR — MONITOR CLOSELY";
 
   } else if (score >= 40) {
 
@@ -557,6 +650,10 @@ function calculateHealth() {
 
   }
 
+
+  // ==============================
+  // DISPLAY FINANCIAL RESULTS
+  // ==============================
 
   document.getElementById("resultTitle").textContent =
     businessName + " — Business Health Report";
@@ -618,12 +715,16 @@ function calculateHealth() {
     workingCapital.toLocaleString();
 
 
+  // ==============================
+  // PROFESSIONAL OBSERVATION
+  // ==============================
+
   let observation = "";
 
   if (netProfit < 0) {
 
     observation =
-      "Your business is currently operating at a loss. Management should urgently review pricing, direct costs and operating expenses.";
+      "The business is currently operating at a loss. Management should review pricing, direct costs and operating expenses as a priority.";
 
   } else if (profitMargin < 10) {
 
@@ -633,17 +734,22 @@ function calculateHealth() {
   } else if (expenseRatio > 40) {
 
     observation =
-      "Operating expenses are consuming a significant portion of revenue. Greater expense control may improve profitability.";
+      "Operating expenses are consuming a significant proportion of revenue. Stronger cost control may improve overall profitability.";
 
   } else if (workingCapital < 0) {
 
     observation =
-      "Your reported cash, receivables and payables indicate a negative working-capital position. Cash-flow management requires attention.";
+      "The business has a negative working-capital position based on the figures provided. Cash-flow and short-term obligations require close monitoring.";
+
+  } else if (receivablesRatio > 30) {
+
+    observation =
+      "Receivables represent a significant proportion of monthly revenue. Strengthening credit control and collection procedures may improve cash conversion.";
 
   } else {
 
     observation =
-      "The business demonstrates a healthy level of profitability. Management should continue monitoring revenue, expenses, working capital and cash flow.";
+      "The business demonstrates a healthy financial position based on the figures provided. Management should continue monitoring profitability, expenses, liquidity and working capital.";
 
   }
 
@@ -651,6 +757,10 @@ function calculateHealth() {
   document.getElementById("observation").textContent =
     observation;
 
+
+  // ==============================
+  // RECOMMENDED ACTIONS
+  // ==============================
 
   const recommendations =
     document.getElementById("recommendations");
@@ -664,7 +774,7 @@ function calculateHealth() {
   if (profitMargin < 10) {
 
     actions.push(
-      "Review your pricing and major cost categories to improve profit margin."
+      "Review pricing and major cost categories to improve profitability."
     );
 
   }
@@ -673,16 +783,25 @@ function calculateHealth() {
   if (expenseRatio > 35) {
 
     actions.push(
-      "Review operating expenses and identify costs that can be reduced or better controlled."
+      "Review operating expenses and identify controllable costs."
     );
 
   }
 
 
-  if (debtors > cash) {
+  if (cash < expenses) {
 
     actions.push(
-      "Strengthen receivables collection so that more reported profit is converted into cash."
+      "Strengthen cash-flow planning because available cash is below one month's operating expenses."
+    );
+
+  }
+
+
+  if (debtors > revenue * 0.30) {
+
+    actions.push(
+      "Improve receivables collection and establish clear customer credit controls."
     );
 
   }
@@ -691,7 +810,7 @@ function calculateHealth() {
   if (workingCapital < 0) {
 
     actions.push(
-      "Develop a short-term cash-flow plan and carefully manage supplier obligations."
+      "Develop a short-term working-capital plan to manage supplier obligations and cash requirements."
     );
 
   }
@@ -700,15 +819,15 @@ function calculateHealth() {
   if (actions.length === 0) {
 
     actions.push(
-      "Continue monitoring revenue, expenses and cash flow on a monthly basis."
+      "Continue monitoring revenue, expenses and cash flow monthly."
     );
 
     actions.push(
-      "Maintain proper financial records to support informed management decisions."
+      "Maintain accurate financial records to support management decisions."
     );
 
     actions.push(
-      "Review your financial performance periodically against your business goals."
+      "Periodically compare actual performance against business targets and budgets."
     );
 
   }
@@ -716,7 +835,8 @@ function calculateHealth() {
 
   actions.forEach(function(action) {
 
-    const li = document.createElement("li");
+    const li =
+      document.createElement("li");
 
     li.textContent = action;
 
@@ -724,6 +844,10 @@ function calculateHealth() {
 
   });
 
+
+  // ==============================
+  // SHOW REPORT
+  // ==============================
 
   document.getElementById("resultSection").style.display =
     "block";
@@ -734,7 +858,6 @@ function calculateHealth() {
   });
 
 }
-
 
 function contactProfessional() {
 
