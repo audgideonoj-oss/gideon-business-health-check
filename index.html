@@ -279,6 +279,252 @@
         padding: 22px;
       }
     }
+    .brand-small {
+
+  font-size: 13px;
+
+  font-weight: bold;
+
+  letter-spacing: 1.5px;
+
+  color: #1687a7;
+
+  margin-bottom: 12px;
+
+}
+
+
+.hero-subtitle {
+
+  font-size: 18px;
+
+  line-height: 1.7;
+
+  color: #59636d;
+
+  max-width: 650px;
+
+}
+
+
+.hero-note {
+
+  font-size: 12px;
+
+  color: #78838d;
+
+  margin-top: 12px;
+
+}
+
+
+.hero-card {
+
+  padding: 28px;
+
+  border: 1px solid #e1e7ed;
+
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+
+}
+
+
+.hero-card-label {
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+  letter-spacing: 1px;
+
+  color: #68737d;
+
+}
+
+
+.hero-card-score {
+
+  font-size: 60px;
+
+  font-weight: bold;
+
+  margin: 12px 0 0;
+
+}
+
+
+.hero-card-text {
+
+  font-size: 14px;
+
+  color: #68737d;
+
+  margin-bottom: 20px;
+
+}
+
+
+.hero-card-list {
+
+  display: grid;
+
+  gap: 10px;
+
+  font-size: 14px;
+
+}
+
+
+.trust-section {
+
+  padding: 70px 20px;
+
+  text-align: center;
+
+}
+
+
+.section-heading {
+
+  max-width: 750px;
+
+  margin: auto;
+
+}
+
+
+.section-label {
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+  letter-spacing: 1.5px;
+
+  color: #1687a7;
+
+}
+
+
+.trust-grid {
+
+  max-width: 1000px;
+
+  margin: 35px auto 0;
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 20px;
+
+}
+
+
+.trust-card {
+
+  padding: 25px;
+
+  border: 1px solid #e1e7ed;
+
+  border-radius: 12px;
+
+  background: #ffffff;
+
+}
+
+
+.trust-card h3 {
+
+  margin-top: 0;
+
+}
+
+
+.trust-card p {
+
+  color: #68737d;
+
+  line-height: 1.6;
+
+}
+
+
+.professional-section {
+
+  padding: 70px 20px;
+
+  background: #f7fafc;
+
+}
+
+
+.professional-inner {
+
+  max-width: 800px;
+
+  margin: auto;
+
+  text-align: center;
+
+}
+
+
+.professional-inner p {
+
+  color: #59636d;
+
+  line-height: 1.7;
+
+}
+
+
+.professional-credentials {
+
+  margin-top: 25px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+
+}
+
+
+.professional-credentials strong {
+
+  font-size: 20px;
+
+}
+
+
+.professional-credentials span {
+
+  color: #68737d;
+
+}
+
+
+@media (max-width: 700px) {
+
+  .trust-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .hero-card {
+
+    margin-top: 20px;
+
+  }
+
+}
   </style>
 </head>
 
@@ -291,19 +537,164 @@
 
 <main class="container">
 
-  <section class="hero">
+<section class="hero">
 
-    <h2>Gideon Business Health Check</h2>
+  <div class="hero-content">
 
-    <p>
-      Know your numbers. Understand your business.
-      Make better financial decisions.
+    <div class="hero-text">
+
+      <div class="brand-small">
+        AUD. GIDEON OJ
+      </div>
+
+      <h1>
+        Know the Financial Health of Your Business
+      </h1>
+
+      <p class="hero-subtitle">
+        A simple professional business health assessment
+        designed to help you understand profitability,
+        expenses, liquidity, working capital and receivables.
+      </p>
+
+      <div class="hero-actions">
+
+        <button class="btn" onclick="startCheck()">
+          START FREE CHECK
+        </button>
+
+      </div>
+
+      <p class="hero-note">
+        Free • Fast • Confidential • No registration required
+      </p>
+
+    </div>
+
+
+    <div class="hero-card">
+
+      <div class="hero-card-label">
+        BUSINESS HEALTH CHECK
+      </div>
+
+      <div class="hero-card-score">
+        100
+      </div>
+
+      <div class="hero-card-text">
+        Point Financial Health Assessment
+      </div>
+
+      <div class="hero-card-list">
+
+        <div>✓ Profitability</div>
+
+        <div>✓ Expense Control</div>
+
+        <div>✓ Liquidity</div>
+
+        <div>✓ Working Capital</div>
+
+        <div>✓ Receivables</div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+  <section class="trust-section">
+
+  <div class="section-heading">
+
+    <p class="section-label">
+      PROFESSIONAL FINANCIAL INSIGHT
     </p>
 
-    <button class="btn" onclick="startCheck()">
-      START FREE CHECK
-    </button>
+    <h2>
+      Understand Your Numbers. Make Better Decisions.
+    </h2>
 
+    <p>
+      Many businesses generate revenue without knowing whether
+      they are truly profitable, sufficiently liquid or financially
+      prepared for their next obligation.
+    </p>
+
+  </div>
+
+
+  <div class="trust-grid">
+
+    <div class="trust-card">
+
+      <h3>📊 Understand</h3>
+
+      <p>
+        See what your financial numbers are telling you.
+      </p>
+
+    </div>
+
+
+    <div class="trust-card">
+
+      <h3>⚠️ Identify</h3>
+
+      <p>
+        Discover areas that may require management attention.
+      </p>
+
+    </div>
+
+
+    <div class="trust-card">
+
+      <h3>🎯 Act</h3>
+
+      <p>
+        Receive practical recommendations based on your results.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+  <section class="professional-section">
+
+  <div class="professional-inner">
+
+    <p class="section-label">
+      PROFESSIONAL SUPPORT
+    </p>
+
+    <h2>
+      Need More Than a Score?
+    </h2>
+
+    <p>
+      The free Business Health Check provides an initial
+      diagnostic view of your business. For a deeper assessment,
+      Aud. Gideon OJ can review your financial records and provide
+      professional analysis and management recommendations.
+    </p>
+
+    <div class="professional-credentials">
+
+      <strong>Aud. Gideon OJ</strong>
+
+      <span>
+        Accountant • Auditor • Analyst
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
   </section>
 
 
