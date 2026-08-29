@@ -413,7 +413,45 @@
     <strong>Profitability:</strong>
     <span id="profitabilityRisk">-</span>
   </div>
+<div class="analysis-box">
 
+  <h4>Financial Analysis</h4>
+
+  <div class="result-box">
+    <strong>Profitability Analysis</strong>
+    <p id="profitabilityExplanation"></p>
+  </div>
+
+  <div class="result-box">
+    <strong>Expense Control Analysis</strong>
+    <p id="expenseExplanation"></p>
+  </div>
+
+  <div class="result-box">
+    <strong>Liquidity Analysis</strong>
+    <p id="liquidityExplanation"></p>
+  </div>
+
+  <div class="result-box">
+    <strong>Working Capital Analysis</strong>
+    <p id="workingCapitalExplanation"></p>
+  </div>
+
+  <div class="result-box">
+    <strong>Receivables Analysis</strong>
+    <p id="receivablesExplanation"></p>
+  </div>
+
+</div>
+
+
+<div class="analysis-box">
+
+  <h4>🎯 Priority Area</h4>
+
+  <p id="priorityArea"></p>
+
+</div>
   <div class="result-box">
     <strong>Expense Control:</strong>
     <span id="expenseRisk">-</span>
@@ -838,7 +876,239 @@ document.getElementById("receivablesRisk").textContent =
   // ==============================
   // PROFESSIONAL OBSERVATION
   // ==============================
+// ==============================
+// INTELLIGENT FINANCIAL ANALYSIS
+// ==============================
 
+let profitabilityExplanation = "";
+
+if (profitMargin >= 20) {
+
+  profitabilityExplanation =
+    "Your business is generating a strong level of profit relative to revenue. Continue monitoring pricing, direct costs and profitability trends.";
+
+} else if (profitMargin >= 10) {
+
+  profitabilityExplanation =
+    "Your business is profitable, but the profit margin has room for improvement. Review pricing and major cost categories.";
+
+} else if (profitMargin >= 0) {
+
+  profitabilityExplanation =
+    "Your business is operating at a positive but relatively low profit margin. Management should examine pricing, direct costs and operating expenses.";
+
+} else {
+
+  profitabilityExplanation =
+    "Your business is currently operating at a loss. Management should urgently review pricing, direct costs and operating expenses.";
+
+}
+
+
+let expenseExplanation = "";
+
+if (expenseRatio <= 20) {
+
+  expenseExplanation =
+    "Operating expenses are relatively low compared with revenue. This indicates good expense control based on the figures provided.";
+
+} else if (expenseRatio <= 35) {
+
+  expenseExplanation =
+    "Operating expenses are at a moderate level compared with revenue. Continue monitoring major expense categories.";
+
+} else if (expenseRatio <= 50) {
+
+  expenseExplanation =
+    "Operating expenses are consuming a significant proportion of revenue. Stronger cost control may improve profitability.";
+
+} else {
+
+  expenseExplanation =
+    "Operating expenses are very high relative to revenue. Management should undertake a detailed review of controllable and recurring costs.";
+
+}
+
+
+let liquidityExplanation = "";
+
+if (expenses === 0) {
+
+  liquidityExplanation =
+    cash > 0
+      ? "Cash is available, but operating-expense coverage cannot be meaningfully assessed because no operating expenses were entered."
+      : "No operating cash reserve was reported. Management should maintain adequate cash reserves for normal business obligations.";
+
+} else {
+
+  const cashCoverage =
+    cash / expenses;
+
+  if (cashCoverage >= 3) {
+
+    liquidityExplanation =
+      "Available cash covers at least three months of reported operating expenses. This indicates a strong short-term cash position.";
+
+  } else if (cashCoverage >= 2) {
+
+    liquidityExplanation =
+      "Available cash covers approximately two months of reported operating expenses. The position is reasonably comfortable, but should continue to be monitored.";
+
+  } else if (cashCoverage >= 1) {
+
+    liquidityExplanation =
+      "Available cash covers approximately one month of reported operating expenses. Management should continue building an adequate cash reserve.";
+
+  } else if (cashCoverage >= 0.5) {
+
+    liquidityExplanation =
+      "Available cash covers less than one month of reported operating expenses. Cash-flow planning requires closer attention.";
+
+  } else if (cash > 0) {
+
+    liquidityExplanation =
+      "Available cash is relatively low compared with reported operating expenses. Strengthening the cash reserve should be a priority.";
+
+  } else {
+
+    liquidityExplanation =
+      "No available cash was reported against the stated operating expenses. Immediate attention should be given to short-term cash-flow management.";
+
+  }
+
+}
+
+
+let workingCapitalExplanation = "";
+
+if (workingCapital > 0) {
+
+  workingCapitalExplanation =
+    "The business has positive working capital based on reported cash, receivables and supplier obligations. Continue monitoring the timing of inflows and outflows.";
+
+} else if (workingCapital === 0) {
+
+  workingCapitalExplanation =
+    "Reported current resources are equal to supplier obligations. Management should monitor cash movements carefully to avoid short-term pressure.";
+
+} else {
+
+  workingCapitalExplanation =
+    "The business has negative working capital based on the figures provided. Short-term obligations exceed reported cash and receivables, requiring closer cash-flow management.";
+
+}
+
+
+let receivablesExplanation = "";
+
+if (receivablesRatio <= 10) {
+
+  receivablesExplanation =
+    "Customer receivables are relatively low compared with monthly revenue. This suggests limited exposure to delayed customer collections.";
+
+} else if (receivablesRatio <= 20) {
+
+  receivablesExplanation =
+    "Customer receivables represent a moderate proportion of monthly revenue. Continue monitoring collection periods and outstanding balances.";
+
+} else if (receivablesRatio <= 30) {
+
+  receivablesExplanation =
+    "Customer receivables represent a meaningful proportion of monthly revenue. Strengthening collection procedures may improve cash conversion.";
+
+} else {
+
+  receivablesExplanation =
+    "Customer receivables represent a high proportion of monthly revenue. Management should review credit terms, collection procedures and overdue balances.";
+
+}
+
+
+document.getElementById("profitabilityExplanation").textContent =
+  profitabilityExplanation;
+
+document.getElementById("expenseExplanation").textContent =
+  expenseExplanation;
+
+document.getElementById("liquidityExplanation").textContent =
+  liquidityExplanation;
+
+document.getElementById("workingCapitalExplanation").textContent =
+  workingCapitalExplanation;
+
+document.getElementById("receivablesExplanation").textContent =
+  receivablesExplanation;
+
+
+// ==============================
+// IDENTIFY PRIORITY AREA
+// ==============================
+
+const areaScores = {
+
+  "Profitability": profitabilityScore / 35,
+
+  "Expense Control": expenseScore / 20,
+
+  "Liquidity": liquidityScore / 20,
+
+  "Working Capital": workingCapitalScore / 15,
+
+  "Receivables Management": receivablesScore / 10
+
+};
+
+
+let priorityArea = "Profitability";
+
+let lowestPercentage = areaScores["Profitability"];
+
+
+for (const area in areaScores) {
+
+  if (areaScores[area] < lowestPercentage) {
+
+    lowestPercentage = areaScores[area];
+
+    priorityArea = area;
+
+  }
+
+}
+
+
+let priorityMessage = "";
+
+if (priorityArea === "Profitability") {
+
+  priorityMessage =
+    "Profitability is currently your priority area. Review pricing, direct costs and operating expenses to improve the amount of revenue converted into profit.";
+
+} else if (priorityArea === "Expense Control") {
+
+  priorityMessage =
+    "Expense control is currently your priority area. Review major operating costs and identify areas where spending can be reduced or better controlled.";
+
+} else if (priorityArea === "Liquidity") {
+
+  priorityMessage =
+    "Liquidity is currently your priority area. Available cash should be monitored closely against upcoming operating expenses and other short-term obligations.";
+
+} else if (priorityArea === "Working Capital") {
+
+  priorityMessage =
+    "Working capital is currently your priority area. Pay close attention to the timing of cash inflows, customer collections and supplier obligations.";
+
+} else {
+
+  priorityMessage =
+    "Receivables management is currently your priority area. Strengthen customer collection procedures and monitor overdue balances.";
+
+}
+
+
+document.getElementById("priorityArea").textContent =
+  priorityMessage;
   let observation = "";
 
   if (netProfit < 0) {
