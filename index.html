@@ -695,6 +695,179 @@
   </div>
 
 </section>
+  <section class="audience-section">
+
+  <div class="section-heading">
+
+    <p class="section-label">
+      DESIGNED FOR BUSINESS OWNERS
+    </p>
+
+    <h2>
+      Who Is This Business Health Check For?
+    </h2>
+
+    <p>
+      Whether you are just starting out or already running an
+      established business, understanding your numbers can help
+      you make better financial decisions.
+    </p>
+
+  </div>
+
+
+  <div class="audience-grid">
+
+    <div class="audience-card">
+      <h3>🏪 Small Businesses</h3>
+      <p>
+        Understand whether your business is genuinely profitable
+        and financially healthy.
+      </p>
+    </div>
+
+
+    <div class="audience-card">
+      <h3>🚀 Entrepreneurs</h3>
+      <p>
+        Get a quick financial picture before making important
+        business decisions.
+      </p>
+    </div>
+
+
+    <div class="audience-card">
+      <h3>💼 Service Businesses</h3>
+      <p>
+        Monitor revenue, expenses, cash flow and profitability.
+      </p>
+    </div>
+
+
+    <div class="audience-card">
+      <h3>📦 Traders & Retailers</h3>
+      <p>
+        Identify financial pressure points affecting your
+        business operations.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+  <section class="benefits-section">
+
+  <div class="section-heading">
+
+    <p class="section-label">
+      YOUR FREE ASSESSMENT
+    </p>
+
+    <h2>
+      What Will You Receive?
+    </h2>
+
+    <p>
+      In just a few minutes, your business figures will be
+      transformed into a simple financial health report.
+    </p>
+
+  </div>
+
+
+  <div class="benefits-list">
+
+    <div>✓ Overall Business Health Score</div>
+
+    <div>✓ Profitability Assessment</div>
+
+    <div>✓ Expense Control Assessment</div>
+
+    <div>✓ Liquidity Assessment</div>
+
+    <div>✓ Working Capital Assessment</div>
+
+    <div>✓ Receivables Assessment</div>
+
+    <div>✓ Key Risk Indicators</div>
+
+    <div>✓ Intelligent Financial Analysis</div>
+
+    <div>✓ Priority Area Identification</div>
+
+    <div>✓ Recommended Management Actions</div>
+
+    <div>✓ Downloadable Professional PDF Report</div>
+
+  </div>
+
+</section>
+  <section class="trust-professional-section">
+
+  <div class="professional-inner">
+
+    <p class="section-label">
+      PROFESSIONAL FINANCIAL ANALYSIS
+    </p>
+
+    <h2>
+      Your Numbers Tell a Story.
+      We Help You Understand It.
+    </h2>
+
+    <p>
+      The Gideon Business Health Check uses practical financial
+      indicators to provide an initial view of your business
+      performance and potential areas requiring management attention.
+    </p>
+
+    <p>
+      For businesses requiring deeper analysis, professional
+      review and management recommendations are available.
+    </p>
+
+
+    <div class="professional-credentials">
+
+      <strong>Aud. Gideon OJ</strong>
+
+      <span>
+        Accountant • Auditor • Analyst
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+  <section class="final-cta">
+
+  <div class="final-cta-inner">
+
+    <p class="section-label">
+      TAKE THE NEXT STEP
+    </p>
+
+    <h2>
+      Ready to Understand Your Business Better?
+    </h2>
+
+    <p>
+      Take the free Business Health Check and discover what
+      your financial numbers are telling you.
+    </p>
+
+    <button class="btn" onclick="startCheck()">
+      START MY FREE CHECK
+    </button>
+
+    <p class="hero-note">
+      Free • Fast • No registration required
+    </p>
+
+  </div>
+
+</section>
   </section>
 
 
@@ -2142,7 +2315,162 @@ button {
   }
 
 }
+.audience-section {
 
+  padding: 70px 20px;
+
+}
+
+
+.audience-grid {
+
+  max-width: 1000px;
+
+  margin: 35px auto 0;
+
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 18px;
+
+}
+
+
+.audience-card {
+
+  padding: 22px;
+
+  border: 1px solid #e1e7ed;
+
+  border-radius: 12px;
+
+  background: #ffffff;
+
+}
+
+
+.audience-card h3 {
+
+  margin-top: 0;
+
+  font-size: 17px;
+
+}
+
+
+.audience-card p {
+
+  color: #68737d;
+
+  line-height: 1.6;
+
+}
+
+
+.benefits-section {
+
+  padding: 70px 20px;
+
+  background: #f7fafc;
+
+}
+
+
+.benefits-list {
+
+  max-width: 750px;
+
+  margin: 35px auto 0;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 14px;
+
+}
+
+
+.benefits-list div {
+
+  padding: 14px 16px;
+
+  background: #ffffff;
+
+  border: 1px solid #e1e7ed;
+
+  border-radius: 8px;
+
+}
+
+
+.trust-professional-section {
+
+  padding: 70px 20px;
+
+}
+
+
+.final-cta {
+
+  padding: 80px 20px;
+
+  background: #f7fafc;
+
+  text-align: center;
+
+}
+
+
+.final-cta-inner {
+
+  max-width: 750px;
+
+  margin: auto;
+
+}
+
+
+.final-cta-inner h2 {
+
+  font-size: 32px;
+
+}
+
+
+@media (max-width: 800px) {
+
+  .audience-grid {
+
+    grid-template-columns: 1fr 1fr;
+
+  }
+
+}
+
+
+@media (max-width: 550px) {
+
+  .audience-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .benefits-list {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .final-cta-inner h2 {
+
+    font-size: 26px;
+
+  }
+
+}
 </style>
 
 </head>
