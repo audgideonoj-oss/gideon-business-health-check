@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gideon Business Health Check | Aud. Gideon OJ</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      color: #172033;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #102a43;
+      color: white;
+      padding: 22px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 26px;
+      margin-bottom: 5px;
+    }
+
+    header p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 35px auto;
+      padding: 0 20px;
+    }
+
+    .hero {
+      background: white;
+      padding: 35px 25px;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      color: #52606d;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #1687a7;
+      color: white;
+      border: none;
+      padding: 14px 25px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    .section {
+      display: none;
+      background: white;
+      margin-top: 20px;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+    }
+
+    .section h3 {
+      margin-bottom: 20px;
+      color: #102a43;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccd6e0;
+      border-radius: 7px;
+      font-size: 16px;
+    }
+
+    .result {
+      text-align: center;
+    }
+
+    .score {
+      font-size: 48px;
+      font-weight: bold;
+      color: #1687a7;
+      margin: 15px 0;
+    }
+
+    .result-box {
+      background: #f4f7fb;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 10px 0;
+      text-align: left;
+    }
+
+    .result-box strong {
+      color: #102a43;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #68737d;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .hero h2 {
+        font-size: 23px;
+      }
+
+      .container {
+        margin: 20px auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Aud. Gideon OJ</h1>
+    <p>Accountant • Auditor • Analyst</p>
+  </header>
+
+  <main class="container">
+
+    <section class="hero">
+      <h2>Gideon Business Health Check</h2>
+
+      <p>
+        Know your numbers. Understand your business.
+        Make better financial decisions.
+      </p>
+
+      <button class="btn" onclick="startCheck()">
+        START FREE CHECK
+      </button>
+    </section>
+
+    <section id="formSection" class="section">
+
+      <h3>Enter Your Business Figures</h3>
+
+      <label>Business Name</label>
+      <input type="text" id="businessName" placeholder="Enter business name">
+
+      <label>Monthly Revenue (₦)</label>
+      <input type="number" id="revenue" placeholder="e.g. 800000">
+
+      <label>Cost of Goods / Services (₦)</label>
+      <input type="number" id="cost" placeholder="e.g. 420000">
+
+      <label>Monthly Operating Expenses (₦)</label>
+      <input type="number" id="expenses" placeholder="e.g. 150000">
+
+      <label>Cash Available (₦)</label>
+      <input type="number" id="cash" placeholder="e.g. 90000">
+
+      <label>Money Customers Owe You (₦)</label>
+      <input type="number" id="debtors" placeholder="e.g. 180000">
+
+      <label>Money You Owe Suppliers (₦)</label>
+      <input type="number" id="creditors" placeholder="e.g. 70000">
+
+      <br><br>
+
+      <button class="btn" onclick="calculateHealth()">
+        ANALYSE MY BUSINESS
+      </button>
+
+    </section>
+
+    <section id="resultSection" class="section result">
+
+      <h3 id="resultTitle">Your Business Health Report</h3>
+
+      <div class="score" id="score">0/100</div>
+
+      <div class="result-box">
+        <strong>Revenue:</strong>
+        ₦<span id="resultRevenue">0</span>
+      </div>
+
+      <div class="result-box">
+        <strong>Gross Profit:</strong>
+        ₦<span id="grossProfit">0</span>
+      </div>
+
+      <div class="result-box">
+        <strong>Net Profit:</strong>
+        ₦<span id="netProfit">0</span>
+      </div>
+
+      <div class="result-box">
+        <strong>Profit Margin:</strong>
+        <span id="profitMargin">0</span>%
+      </div>
+
+      <div class="result-box">
+        <strong>Expense Ratio:</strong>
+        <span id="expenseRatio">0</span>%
+      </div>
+
+      <div class="result-box">
+        <strong>Professional Observation:</strong>
+        <p id="observation"></p>
+      </div>
+
+      <br>
+
+      <button class="btn" onclick="startCheck()">
+        CHECK AGAIN
+      </button>
+
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 Aud. Gideon OJ — Accountant • Auditor • Analyst
+  </footer>
+
+  <script>
+
+    function startCheck() {
+      document.getElementById("formSection").style.display = "block";
+      document.getElementById("resultSection").style.display = "none";
+
+      document.getElementById("formSection").scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+
+    function calculateHealth() {
+
+      const revenue = Number(document.getElementById("revenue").value);
+      const cost = Number(document.getElementById("cost").value);
+      const expenses = Number(document.getElementById("expenses").value);
+
+      if (!revenue || revenue <= 0) {
+        alert("Please enter your monthly revenue.");
+        return;
+      }
+
+      const grossProfit = revenue - cost;
+      const netProfit = grossProfit - expenses;
+
+      const profitMargin = (netProfit / revenue) * 100;
+      const expenseRatio = (expenses / revenue) * 100;
+
+      let score = 50;
+
+      if (profitMargin > 30) score += 25;
+      else if (profitMargin > 20) score += 20;
+      else if (profitMargin > 10) score += 10;
+
+      if (expenseRatio < 20) score += 20;
+      else if (expenseRatio < 35) score += 15;
+      else if (expenseRatio < 50) score += 5;
+
+      if (netProfit < 0) score -= 30;
+
+      if (score > 100) score = 100;
+      if (score < 0) score = 0;
+
+      document.getElementById("resultRevenue").textContent =
+        revenue.toLocaleString();
+
+      document.getElementById("grossProfit").textContent =
+        grossProfit.toLocaleString();
+
+      document.getElementById("netProfit").textContent =
+        netProfit.toLocaleString();
+
+      document.getElementById("profitMargin").textContent =
+        profitMargin.toFixed(1);
+
+      document.getElementById("expenseRatio").textContent =
+        expenseRatio.toFixed(1);
+
+      document.getElementById("score").textContent =
+        score + "/100";
+
+      let observation = "";
+
+      if (netProfit < 0) {
+        observation =
+          "Your business is currently operating at a loss. Review pricing, cost of goods and operating expenses.";
+      } else if (profitMargin < 10) {
+        observation =
+          "Your business is profitable, but the profit margin is relatively low. Review your costs and pricing.";
+      } else if (expenseRatio > 40) {
+        observation =
+          "Your expenses are taking a significant portion of your revenue. Consider reviewing unnecessary or controllable costs.";
+      } else {
+        observation =
+          "Your business shows a healthy level of profitability. Continue monitoring revenue, expenses and cash flow.";
+      }
+
+      document.getElementById("observation").textContent = observation;
+
+      document.getElementById("resultSection").style.display = "block";
+
+      document.getElementById("resultSection").scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+
+  </script>
+
+</body>
+</html>
