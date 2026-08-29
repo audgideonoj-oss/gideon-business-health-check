@@ -109,10 +109,39 @@
       font-size: 16px;
     }
 
-    .report-title {
-      text-align: center;
-      margin-bottom: 25px;
-    }
+   .report-title {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e1e7ed;
+}
+
+.report-label {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  color: #1687a7;
+  margin-bottom: 8px;
+}
+
+#assessmentDate {
+  color: #68737d;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.priority-box {
+  border-left: 5px solid #1687a7;
+}
+
+.disclaimer {
+  margin-top: 22px;
+  padding: 15px;
+  background: #f8fafc;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #68737d;
+}
 
     .score {
       text-align: center;
@@ -282,24 +311,36 @@
   </section>
 
 
-  <section id="resultSection" class="section">
+ <section id="resultSection" class="section">
 
-    <div class="report-title">
+  <div class="report-title">
 
-      <h3 id="resultTitle">
-        Business Health Report
-      </h3>
+    <p class="report-label">
+      GIDEON BUSINESS HEALTH CHECK
+    </p>
 
-      <div class="score" id="score">
-        0/100
-      </div>
+    <h3 id="resultTitle">
+      Business Health Report
+    </h3>
 
-      <div class="status" id="status">
-        -
-      </div>
+    <p id="assessmentDate"></p>
 
+    <div class="score" id="score">
+      0/100
     </div>
 
+    <div class="status" id="status">
+      -
+    </div>
+
+  </div>
+
+
+  <!-- FINANCIAL SUMMARY -->
+
+  <div class="analysis-box">
+
+    <h4>1. Financial Summary</h4>
 
     <div class="metric-grid">
 
@@ -359,153 +400,177 @@
       </div>
 
       <div class="metric">
-        <span>Working Capital Position</span>
+        <span>Working Capital</span>
         <strong>₦<span id="workingCapital">0</span></strong>
       </div>
 
     </div>
 
-
-    <div class="analysis-box">
-
-      <h4>Professional Observation</h4>
-
-      <p id="observation"></p>
-
-    </div>
-<div class="analysis-box">
-
-  <h4>Score Breakdown</h4>
-
-  <div class="result-box">
-    <strong>Profitability:</strong>
-    <span id="profitabilityScore">0/35</span>
   </div>
 
-  <div class="result-box">
-    <strong>Expense Control:</strong>
-    <span id="expenseScore">0/20</span>
-  </div>
 
-  <div class="result-box">
-    <strong>Liquidity:</strong>
-    <span id="liquidityScore">0/20</span>
-  </div>
+  <!-- SCORE BREAKDOWN -->
 
-  <div class="result-box">
-    <strong>Working Capital:</strong>
-    <span id="workingCapitalScore">0/15</span>
-  </div>
+  <div class="analysis-box">
 
-  <div class="result-box">
-    <strong>Receivables Management:</strong>
-    <span id="receivablesScore">0/10</span>
-  </div>
+    <h4>2. Score Breakdown</h4>
 
-</div>
-
-
-<div class="analysis-box">
-
-  <h4>Key Risk Indicators</h4>
-
-  <div class="result-box">
-    <strong>Profitability:</strong>
-    <span id="profitabilityRisk">-</span>
-  </div>
-<div class="analysis-box">
-
-  <h4>Financial Analysis</h4>
-
-  <div class="result-box">
-    <strong>Profitability Analysis</strong>
-    <p id="profitabilityExplanation"></p>
-  </div>
-
-  <div class="result-box">
-    <strong>Expense Control Analysis</strong>
-    <p id="expenseExplanation"></p>
-  </div>
-
-  <div class="result-box">
-    <strong>Liquidity Analysis</strong>
-    <p id="liquidityExplanation"></p>
-  </div>
-
-  <div class="result-box">
-    <strong>Working Capital Analysis</strong>
-    <p id="workingCapitalExplanation"></p>
-  </div>
-
-  <div class="result-box">
-    <strong>Receivables Analysis</strong>
-    <p id="receivablesExplanation"></p>
-  </div>
-
-</div>
-
-
-<div class="analysis-box">
-
-  <h4>🎯 Priority Area</h4>
-
-  <p id="priorityArea"></p>
-
-</div>
-  <div class="result-box">
-    <strong>Expense Control:</strong>
-    <span id="expenseRisk">-</span>
-  </div>
-
-  <div class="result-box">
-    <strong>Liquidity:</strong>
-    <span id="liquidityRisk">-</span>
-  </div>
-
-  <div class="result-box">
-    <strong>Working Capital:</strong>
-    <span id="workingCapitalRisk">-</span>
-  </div>
-
-  <div class="result-box">
-    <strong>Receivables:</strong>
-    <span id="receivablesRisk">-</span>
-  </div>
-
-</div>
-
-    <div class="analysis-box">
-
-      <h4>Recommended Actions</h4>
-
-      <ul class="recommendations" id="recommendations"></ul>
-
+    <div class="result-box">
+      <strong>Profitability:</strong>
+      <span id="profitabilityScore">0/35</span>
     </div>
 
-
-    <div class="cta">
-
-      <h4>Need a Deeper Business Review?</h4>
-
-      <p>
-        Have your actual business records professionally reviewed
-        by Aud. Gideon OJ.
-      </p>
-
-      <button class="btn" onclick="contactProfessional()">
-        REQUEST PROFESSIONAL REVIEW
-      </button>
-
+    <div class="result-box">
+      <strong>Expense Control:</strong>
+      <span id="expenseScore">0/20</span>
     </div>
 
-    <br>
+    <div class="result-box">
+      <strong>Liquidity:</strong>
+      <span id="liquidityScore">0/20</span>
+    </div>
 
-    <button class="btn" onclick="startCheck()">
-      CHECK AGAIN
+    <div class="result-box">
+      <strong>Working Capital:</strong>
+      <span id="workingCapitalScore">0/15</span>
+    </div>
+
+    <div class="result-box">
+      <strong>Receivables Management:</strong>
+      <span id="receivablesScore">0/10</span>
+    </div>
+
+  </div>
+
+
+  <!-- KEY RISK INDICATORS -->
+
+  <div class="analysis-box">
+
+    <h4>3. Key Risk Indicators</h4>
+
+    <div class="result-box">
+      <strong>Profitability:</strong>
+      <span id="profitabilityRisk">-</span>
+    </div>
+
+    <div class="result-box">
+      <strong>Expense Control:</strong>
+      <span id="expenseRisk">-</span>
+    </div>
+
+    <div class="result-box">
+      <strong>Liquidity:</strong>
+      <span id="liquidityRisk">-</span>
+    </div>
+
+    <div class="result-box">
+      <strong>Working Capital:</strong>
+      <span id="workingCapitalRisk">-</span>
+    </div>
+
+    <div class="result-box">
+      <strong>Receivables:</strong>
+      <span id="receivablesRisk">-</span>
+    </div>
+
+  </div>
+
+
+  <!-- FINANCIAL ANALYSIS -->
+
+  <div class="analysis-box">
+
+    <h4>4. Financial Analysis</h4>
+
+    <div class="result-box">
+      <strong>Profitability Analysis</strong>
+      <p id="profitabilityExplanation"></p>
+    </div>
+
+    <div class="result-box">
+      <strong>Expense Control Analysis</strong>
+      <p id="expenseExplanation"></p>
+    </div>
+
+    <div class="result-box">
+      <strong>Liquidity Analysis</strong>
+      <p id="liquidityExplanation"></p>
+    </div>
+
+    <div class="result-box">
+      <strong>Working Capital Analysis</strong>
+      <p id="workingCapitalExplanation"></p>
+    </div>
+
+    <div class="result-box">
+      <strong>Receivables Analysis</strong>
+      <p id="receivablesExplanation"></p>
+    </div>
+
+  </div>
+
+
+  <!-- PRIORITY AREA -->
+
+  <div class="analysis-box priority-box">
+
+    <h4>5. 🎯 Priority Area</h4>
+
+    <p id="priorityArea"></p>
+
+  </div>
+
+
+  <!-- RECOMMENDATIONS -->
+
+  <div class="analysis-box">
+
+    <h4>6. Recommended Actions</h4>
+
+    <ul class="recommendations" id="recommendations"></ul>
+
+  </div>
+
+
+  <!-- PROFESSIONAL REVIEW -->
+
+  <div class="cta">
+
+    <h4>7. Need a Deeper Business Review?</h4>
+
+    <p>
+      Have your actual business records professionally reviewed
+      by Aud. Gideon OJ.
+    </p>
+
+    <button class="btn" onclick="contactProfessional()">
+      REQUEST PROFESSIONAL REVIEW
     </button>
 
-  </section>
+  </div>
 
+
+  <div class="disclaimer">
+
+    <strong>Important:</strong>
+
+    This business health assessment is a preliminary
+    financial diagnostic based solely on information
+    supplied by the user. It is not an audit, assurance
+    engagement or substitute for professional financial
+    advice.
+
+  </div>
+
+
+  <br>
+
+  <button class="btn" onclick="startCheck()">
+    CHECK AGAIN
+  </button>
+
+</section>
 </main>
 
 
@@ -815,7 +880,15 @@ document.getElementById("receivablesRisk").textContent =
 
   document.getElementById("resultTitle").textContent =
     businessName + " — Business Health Report";
+const today = new Date();
 
+document.getElementById("assessmentDate").textContent =
+  "Assessment Date: " +
+  today.toLocaleDateString("en-NG", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  });
 
   document.getElementById("score").textContent =
     score + "/100";
