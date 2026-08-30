@@ -1328,68 +1328,99 @@
   </p>
 
 
-  <div class="service-card">
+<div class="service-card">
 
-    <h3>Quick Financial Review</h3>
-
-    <div class="service-price">
-      ₦5,000
-    </div>
-
-    <p>
-      Focused review of the financial information submitted
-      through the Business Health Check.
-    </p>
-
-    <button class="btn"
-      onclick="requestService('Quick Financial Review', '₦5,000')">
-      REQUEST REVIEW
-    </button>
-
+  <div class="service-badge">
+    START HERE
   </div>
 
+  <h3>Quick Financial Review</h3>
 
-  <div class="service-card">
-
-    <h3>Detailed Business Review</h3>
-
-    <div class="service-price">
-      ₦15,000
-    </div>
-
-    <p>
-      Deeper analysis of profitability, expenses, liquidity,
-      working capital and receivables.
-    </p>
-
-    <button class="btn"
-      onclick="requestService('Detailed Business Review', '₦15,000')">
-      REQUEST REVIEW
-    </button>
-
+  <div class="service-price">
+    ₦5,000
   </div>
 
+  <p>
+    A focused review of the financial information submitted
+    through the Business Health Check.
+  </p>
 
-  <div class="service-card">
+  <ul class="service-features">
+    <li>✓ Review of key financial figures</li>
+    <li>✓ Identification of major concerns</li>
+    <li>✓ Practical professional observations</li>
+  </ul>
 
-    <h3>Comprehensive Financial Review</h3>
+  <button class="btn"
+    onclick="requestService('Quick Financial Review', '₦5,000')">
+    REQUEST REVIEW
+  </button>
 
-    <div class="service-price">
-      ₦25,000
-    </div>
+</div>
 
-    <p>
-      Comprehensive professional review of business records,
-      financial position and management recommendations.
-    </p>
 
-    <button class="btn"
-      onclick="requestService('Comprehensive Financial Review', '₦25,000')">
-      REQUEST REVIEW
-    </button>
+<div class="service-card service-featured">
 
+  <div class="service-badge">
+    MOST POPULAR
   </div>
 
+  <h3>Detailed Business Review</h3>
+
+  <div class="service-price">
+    ₦15,000
+  </div>
+
+  <p>
+    Deeper analysis of profitability, expenses, liquidity,
+    working capital and receivables.
+  </p>
+
+  <ul class="service-features">
+    <li>✓ Detailed financial analysis</li>
+    <li>✓ Key risk identification</li>
+    <li>✓ Priority-area assessment</li>
+    <li>✓ Practical recommendations</li>
+  </ul>
+
+  <button class="btn"
+    onclick="requestService('Detailed Business Review', '₦15,000')">
+    REQUEST REVIEW
+  </button>
+
+</div>
+
+
+<div class="service-card">
+
+  <div class="service-badge">
+    FULL REVIEW
+  </div>
+
+  <h3>Comprehensive Financial Review</h3>
+
+  <div class="service-price">
+    ₦25,000
+  </div>
+
+  <p>
+    Comprehensive professional review of business records,
+    financial position and management recommendations.
+  </p>
+
+  <ul class="service-features">
+    <li>✓ Comprehensive financial review</li>
+    <li>✓ Detailed observations</li>
+    <li>✓ Management recommendations</li>
+    <li>✓ Professional review summary</li>
+  </ul>
+
+  <button class="btn"
+    onclick="requestService('Comprehensive Financial Review', '₦25,000')">
+    REQUEST REVIEW
+  </button>
+
+</div> 
 </div>
   <div class="disclaimer">
 
@@ -2857,6 +2888,45 @@ button {
 
   }
 
+}
+.service-badge {
+  display: inline-block;
+  margin-bottom: 15px;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: #f0f6f8;
+}
+
+.service-features {
+  margin: 20px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.service-features li {
+  margin: 10px 0;
+  color: #59636d;
+  font-size: 14px;
+}
+
+.service-featured {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.service-price {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 12px 0;
+}
+
+@media (max-width: 800px) {
+  .service-featured {
+    transform: none;
+  }
 }
 </style>
 
