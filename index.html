@@ -1313,37 +1313,22 @@ function startCheck() {
 
 
 function calculateHealth() {
+
   const clientName =
-    const message =
-  `Hello Aud. Gideon OJ.
-
-My name is ${clientName}.
-
-I have completed the Gideon Business Health Check.
-
-Business: ${businessName}
-Health Score: ${score}
-Status: ${status}
-Priority Area: ${priority}
-
-I would like to request a professional review of my business financial records.`;
-  document.getElementById("clientName").value.trim();
-
-const businessName =
-  document.getElementById("businessName").value.trim();
-
-if (!clientName || !businessName) {
-
-  alert(
-    "Please enter your name and business name before analysing your business."
-  );
-
-  return;
-
-}
+    document.getElementById("clientName").value.trim();
 
   const businessName =
-    document.getElementById("businessName").value || "Your Business";
+    document.getElementById("businessName").value.trim();
+
+  if (!clientName || !businessName) {
+
+    alert(
+      "Please enter your name and business name before analysing your business."
+    );
+
+    return;
+
+  }
 
   const revenue =
     Number(document.getElementById("revenue").value);
@@ -1369,15 +1354,22 @@ if (!clientName || !businessName) {
     alert("Please enter your monthly revenue.");
 
     return;
+
   }
 
 
-  if (cost < 0 || expenses < 0 || cash < 0 ||
-      debtors < 0 || creditors < 0) {
+  if (
+    cost < 0 ||
+    expenses < 0 ||
+    cash < 0 ||
+    debtors < 0 ||
+    creditors < 0
+  ) {
 
     alert("Please enter valid positive figures.");
 
     return;
+
   }
 
 
@@ -1385,9 +1377,11 @@ if (!clientName || !businessName) {
   // BASIC FINANCIAL CALCULATIONS
   // ==============================
 
-  const grossProfit = revenue - cost;
+  const grossProfit =
+    revenue - cost;
 
-  const netProfit = grossProfit - expenses;
+  const netProfit =
+    grossProfit - expenses;
 
   const grossMargin =
     (grossProfit / revenue) * 100;
@@ -1400,8 +1394,6 @@ if (!clientName || !businessName) {
 
   const workingCapital =
     cash + debtors - creditors;
-
-
   // ==============================
   // 1. PROFITABILITY SCORE — 35
   // ==============================
@@ -2065,33 +2057,8 @@ document.getElementById("priorityArea").textContent =
 }
 function contactProfessional() {
 
-  const businessName =
-    document.getElementById("businessName").value ||
-    "My Business";
-
-  const score =
-    document.getElementById("score").textContent;
-
-  const status =
-    document.getElementById("status").textContent;
-
-  const priorityText =
-    document.getElementById("priorityArea").textContent;
-
-  let priority = "See assessment report";
-
-  if (priorityText.toLowerCase().includes("liquidity")) {
-    priority = "Liquidity";
-  } else if (priorityText.toLowerCase().includes("profitability")) {
-    priority = "Profitability";
-  } else if (priorityText.toLowerCase().includes("expense")) {
-    priority = "Expense Control";
-  } else if (priorityText.toLowerCase().includes("working capital")) {
-    priority = "Working Capital";
-  } else if (priorityText.toLowerCase().includes("receivable")) {
-    priority = "Receivables Management";
-  }
-  function requestService(serviceName, servicePrice) {
+  const clientName =
+    document.getElementById("clientName").value.trim();
 
   const businessName =
     document.getElementById("businessName").value ||
@@ -2106,9 +2073,7 @@ function contactProfessional() {
   const priorityText =
     document.getElementById("priorityArea").textContent;
 
-
   let priority = "See assessment report";
-
 
   if (priorityText.toLowerCase().includes("liquidity")) {
 
@@ -2131,10 +2096,84 @@ function contactProfessional() {
     priority = "Receivables Management";
 
   }
-
 
   const message =
     `Hello Aud. Gideon OJ.
+
+My name is ${clientName}.
+
+I have completed the Gideon Business Health Check.
+
+Business: ${businessName}
+Health Score: ${score}
+Status: ${status}
+Priority Area: ${priority}
+
+I would like to request a professional review of my business financial records.`;
+
+  const phoneNumber =
+    "2347065905343";
+
+  const whatsappURL =
+    "https://wa.me/" +
+    phoneNumber +
+    "?text=" +
+    encodeURIComponent(message);
+
+  window.open(
+    whatsappURL,
+    "_blank"
+  );
+
+}
+
+
+function requestService(serviceName, servicePrice) {
+
+  const clientName =
+    document.getElementById("clientName").value.trim();
+
+  const businessName =
+    document.getElementById("businessName").value ||
+    "My Business";
+
+  const score =
+    document.getElementById("score").textContent;
+
+  const status =
+    document.getElementById("status").textContent;
+
+  const priorityText =
+    document.getElementById("priorityArea").textContent;
+
+  let priority = "See assessment report";
+
+  if (priorityText.toLowerCase().includes("liquidity")) {
+
+    priority = "Liquidity";
+
+  } else if (priorityText.toLowerCase().includes("profitability")) {
+
+    priority = "Profitability";
+
+  } else if (priorityText.toLowerCase().includes("expense")) {
+
+    priority = "Expense Control";
+
+  } else if (priorityText.toLowerCase().includes("working capital")) {
+
+    priority = "Working Capital";
+
+  } else if (priorityText.toLowerCase().includes("receivable")) {
+
+    priority = "Receivables Management";
+
+  }
+
+  const message =
+    `Hello Aud. Gideon OJ.
+
+My name is ${clientName}.
 
 I have completed the Gideon Business Health Check.
 
@@ -2147,49 +2186,22 @@ I am interested in the ${serviceName} (${servicePrice}).
 
 Please provide the next steps for engaging your professional service.`;
 
-
   const phoneNumber =
     "2347065905343";
-
 
   const whatsappURL =
     "https://wa.me/" +
     phoneNumber +
     "?text=" +
     encodeURIComponent(message);
-
 
   window.open(
     whatsappURL,
     "_blank"
   );
-
 }
 
-  const message =
-    `Hello Aud. Gideon OJ.
-
-I have completed the Gideon Business Health Check.
-
-Business: ${businessName}
-Health Score: ${score}
-Status: ${status}
-Priority Area: ${priority}
-
-I would like to request a professional review of my business financial records.`;
-
-  const phoneNumber = "2347065905343";
-
-  const whatsappURL =
-    "https://wa.me/" +
-    phoneNumber +
-    "?text=" +
-    encodeURIComponent(message);
-
-  window.open(whatsappURL, "_blank");
-}
-
-function downloadReport() {
+  function downloadReport() {
 
   const reportWindow = window.open("", "_blank");
 
