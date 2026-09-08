@@ -1137,16 +1137,12 @@
 
   </div>
 
-</section>
-  </section>
 
+  </section>
 
   <section id="formSection" class="section">
 
     <h3>Enter Your Business Figures</h3>
-
-    <label>Business Name</label>
-    <input type="text" id="businessName" placeholder="Enter business name">
 
     <label>Monthly Revenue (₦)</label>
     <input type="number" id="revenue" placeholder="e.g. 800000">
@@ -1162,7 +1158,19 @@
 
     <label>Money Customers Owe You (₦)</label>
     <input type="number" id="debtors" placeholder="e.g. 180000">
-
+<div class="form-group">
+    <label>How long have your customers owed you?</label>
+    <select id="receivablesAge">
+        <option value="">Select aging period</option>
+        <option value="0-30">0–30 days</option>
+        <option value="31-60">31–60 days</option>
+        <option value="61-90">61–90 days</option>
+        <option value="91-180">91–180 days</option>
+        <option value="180+">Over 180 days</option>
+    </select>
+</div>
+    
+<div class="form_group">
     <label>Money You Owe Suppliers (₦)</label>
     <input type="number" id="creditors" placeholder="e.g. 70000">
 
