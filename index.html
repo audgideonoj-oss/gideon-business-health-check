@@ -1181,6 +1181,15 @@
     required
   >
 
+  <label for="clientEmail">Email Address</label>
+
+  <input
+    type="email"
+    id="clientEmail"
+    placeholder="Enter your email address"
+    required
+  >
+
   <label for="businessName">Business Name</label>
 
   <input
@@ -1607,6 +1616,8 @@
 
 </footer>
 
+
+<script src="https://js.paystack.co/v2/inline.js"></script>
 
 <script>
 
@@ -2438,80 +2449,131 @@ I would like to request a professional review of my business financial records.`
 }
 
 
+// ============================================================
+// PAYSTACK PAYMENT SETTINGS
+// ============================================================
+// Replace the value below with your Paystack PUBLIC key.
+// Never put your Paystack SECRET key in this HTML file.
+const PAYSTACK_PUBLIC_KEY = "pk_test_REPLACE_WITH_YOUR_PAYSTACK_PUBLIC_KEY";
+
 function requestService(serviceName, servicePrice) {
 
   const clientName =
     document.getElementById("clientName").value.trim();
 
+  const clientEmail =
+    document.getElementById("clientEmail").value.trim();
+
   const businessName =
-    document.getElementById("businessName").value ||
-    "My Business";
+    document.getElementById("businessName").value.trim() || "My Business";
 
-  const score =
-    document.getElementById("score").textContent;
-
-  const status =
-    document.getElementById("status").textContent;
-
-  const priorityText =
-    document.getElementById("priorityArea").textContent;
-
-  let priority = "See assessment report";
-
-  if (priorityText.toLowerCase().includes("liquidity")) {
-
-    priority = "Liquidity";
-
-  } else if (priorityText.toLowerCase().includes("profitability")) {
-
-    priority = "Profitability";
-
-  } else if (priorityText.toLowerCase().includes("expense")) {
-
-    priority = "Expense Control";
-
-  } else if (priorityText.toLowerCase().includes("working capital")) {
-
-    priority = "Working Capital";
-
-  } else if (priorityText.toLowerCase().includes("receivable")) {
-
-    priority = "Receivables Management";
-
+  if (!clientName) {
+    alert("Please enter your full name before requesting a review.");
+    document.getElementById("clientName").focus();
+    return;
   }
 
-  const message =
-    `Hello Aud. Gideon OJ.
+  if (!clientEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clientEmail)) {
+    alert("Please enter a valid email address for your payment receipt.");
+    document.getElementById("clientEmail").focus();
+    return;
+  }
 
-My name is ${clientName}.
+  if (PAYSTACK_PUBLIC_KEY.includes("REPLACE_WITH")) {
+    alert("Paystack is not connected yet. Add your Paystack PUBLIC key to the HTML file first.");
+    return;
+  }
 
-I have completed the Gideon Business Health Check.
+  const amountNaira = Number(String(servicePrice).replace(/[^0-9.]/g, ""));
+  const amountKobo = Math.round(amountNaira * 100);
 
-Business: ${businessName}
-Health Score: ${score}
-Status: ${status}
-Priority Area: ${priority}
+  const score =
+    document.getElementById("score")?.textContent || "Not calculated";
 
-I am interested in the ${serviceName} (${servicePrice}).
+  const status =
+    document.getElementById("status")?.textContent || "Not calculated";
 
-Please provide the next steps for engaging your professional service.`;
+  const priorityText =
+    document.getElementById("priorityArea")?.textContent || "See assessment report";
 
-  const phoneNumber =
-    "2347065905343";
+  let priority = "See assessment report";
+  const priorityLower = priorityText.toLowerCase();
 
-  const whatsappURL =
-    "https://wa.me/" +
-    phoneNumber +
-    "?text=" +
-    encodeURIComponent(message);
+  if (priorityLower.includes("liquidity")) {
+    priority = "Liquidity";
+  } else if (priorityLower.includes("profitability")) {
+    priority = "Profitability";
+  } else if (priorityLower.includes("expense")) {
+    priority = "Expense Control";
+  } else if (priorityLower.includes("working capital")) {
+    priority = "Working Capital";
+  } else if (priorityLower.includes("receivable")) {
+    priority = "Receivables Management";
+  }
 
-  window.open(
-    whatsappURL,
-    "_blank"
-  );
+  const reference =
+    "GBHC-" + Date.now() + "-" + Math.random().toString(36).slice(2, 8).toUpperCase();
+
+  const metadata = {
+    custom_fields: [
+      { display_name: "Client Name", variable_name: "client_name", value: clientName },
+      { display_name: "Business Name", variable_name: "business_name", value: businessName },
+      { display_name: "Service", variable_name: "service", value: serviceName },
+      { display_name: "Health Score", variable_name: "health_score", value: score },
+      { display_name: "Health Status", variable_name: "health_status", value: status },
+      { display_name: "Priority Area", variable_name: "priority_area", value: priority }
+    ]
+  };
+
+  try {
+    const popup = new PaystackPop();
+
+    popup.newTransaction({
+      key: PAYSTACK_PUBLIC_KEY,
+      email: clientEmail,
+      amount: amountKobo,
+      currency: "NGN",
+      reference: reference,
+      metadata: metadata,
+
+      onSuccess: function(transaction) {
+        const phoneNumber = "2347065905343";
+        const message =
+          `Hello Aud. Gideon OJ.\n\n` +
+          `Payment completed for my Gideon Business Health Check professional review.\n\n` +
+          `Name: ${clientName}\n` +
+          `Business: ${businessName}\n` +
+          `Service: ${serviceName}\n` +
+          `Amount: ₦${amountNaira.toLocaleString()}\n` +
+          `Health Score: ${score}\n` +
+          `Status: ${status}\n` +
+          `Priority Area: ${priority}\n` +
+          `Payment Reference: ${transaction.reference}`;
+
+        alert(
+          "Payment successful!\n\nReference: " +
+          transaction.reference +
+          "\n\nYour payment has been received. Click OK to send your payment confirmation on WhatsApp."
+        );
+
+        window.open(
+          "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message),
+          "_blank"
+        );
+      },
+
+      onCancel: function() {
+        alert("Payment was cancelled. No payment was completed.");
+      }
+    });
+
+  } catch (error) {
+    console.error(error);
+    alert("We could not open Paystack. Please try again or contact us on WhatsApp.");
+  }
 }
 
-  function downloadReport() {
+function downloadReport() {
 
   const reportWindow = window.open("", "_blank");
 
